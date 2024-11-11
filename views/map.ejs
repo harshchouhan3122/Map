@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h1 style="text-decoration: underline;">Map Location</h1> <br><br>
+
+    <h3>Search Location through Coordinates</h3>
+    <form action="/map" method="GET">
+        <label for="lat">Latitude: </label>
+        <input type="number" name="lat" step="0.0001" required> ,
+    
+        <label for="lng">Longitude: </label>
+        <input type="number" name="lng" step="0.0001" required>
+    
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- <hr>
+    <h3>Search Location through Address</h3>
+    <form action="/mapAdd" method="GET">
+        <label for="address">Address </label>
+        <input type="text" name="address" step="0.0001" required>
+    
+        <button type="submit">Search</button>
+    </form> -->
+    
+    <br><br>
+    <h4>Location Requested: 
+        <%= latitude && longitude ? `${latitude} °N, ${longitude} °E` : address ? address : 'No location provided' %>
+    </h4>
+
+    <div class="map-container borderRadiusTop">
+        <div id="map" class="map"></div>
+    </div>
+
+    <!-- Pass latitude and longitude to map.js via the EJS template -->
+    <script>
+        const latitude = <%= latitude %>;  // Embed latitude from app.js
+        const longitude = <%= longitude %>;  // Embed longitude from app.js
+    </script>
+
+    <!-- Include Leaflet JavaScript library -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- Include external JavaScript file for map functionality -->
+    <script src="js/map.js"></script>
+
+</body>
+</html>

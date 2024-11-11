@@ -1,0 +1,59 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+hr {
+    border: none;                /* Remove the default border */
+    border-top: 1px solid #000;  /* Explicitly set the top border for visibility */
+    margin-top: 20px;            /* Add some space above */
+    margin-bottom: 20px;         /* Add some space below */
+    width: 50vw;                 /* Ensure it spans the full width */
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    margin: 1rem;
+}
+/* .map{
+    margin: 1rem;
+    height: 50vh;
+    width: 50vw;
+    border: 1px solid rgb(3, 3, 3);
+    overflow-y: hidden;
+} */
+
+.map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.map {
+    margin: 1rem;
+    height: 50vh;
+    width: 50vw;
+    /* height:25vh;
+    width: 25vw; */
+    border: 1px solid rgb(3, 3, 3);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
