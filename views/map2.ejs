@@ -12,10 +12,9 @@
 </head>
 <body>
     <h1 style="margin-bottom: 1rem;">Map Location</h1>
-    <h3>Search location using coordinates</h3>
-    <form action="/map1" method="GET">
-        <label>Latitude: <input type="number" name="lat" step="0.0001" required></label>
-        <label>and Longitude: <input type="number" name="lng" step="0.0001" required></label>
+    <h3>Search location using Address</h3>
+    <form action="/map2" method="GET">
+        <label>Address: <input type="text" name="address"  required></label>
         <button type="submit">Search</button>
     </form>
     <hr>
@@ -26,6 +25,7 @@
     <script>
         const latitude = <%= latitude %>;
         const longitude = <%= longitude %>;
+        const address = <%= address %>;
     </script>
 
     <!-- Leaflet and map functionality -->
