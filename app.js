@@ -1,8 +1,9 @@
 const express = require('express');
-// const fetch = require('node-fetch'); // Ensure to install node-fetch
 const axios = require('axios');
 const app = express();
 const path = require('path');
+
+// const { getFinalPosition } = require('./public/js/map');
 
 // Set up EJS and static files
 app.set('view engine', 'ejs');
@@ -13,16 +14,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get("/", (req, res) => { res.send("New Root Directory"); });
 
 // Render the map with default coordinates if none are provided
-app.get('/map1', async (req, res) => {
-    const latitude = req.query.lat || 28.644800;  // Default to Delhi
-    const longitude = req.query.lng || 77.216721;
+app.get('/map', async (req, res) => {
+    const latitude = parseFloat(req.query.lat) || 0;
+    const longitude = parseFloat(req.query.lng) || 0;
+    
     const cityName = await getPlaceName(latitude, longitude);
 
     console.log(`Latitude: ${latitude}, Longitude: ${longitude} and City is : ${cityName}`);
 
     // Rendering map (use proper template later)
     // res.send("Done Coord");
-    res.render("map.ejs", {latitude, longitude});
+    res.render("map.ejs", {latitude, longitude, address: 'Unknown City'});
 });
 
 // Render the map with default coordinates if none are not provided
@@ -30,14 +32,31 @@ app.get('/map2', async (req, res) => {
     const address = req.query.address;
 
     const coordinates = await getCoordinates(address);
-    const { latitude, longitude } = coordinates;
+    const { latitude, longitude } = coordinates || { latitude: 0, longitude: 0 };
 
     console.log(`Address: ${address} and its coordinates are ${JSON.stringify(coordinates)}`);
     
     // Rendering map (use proper template later)
     // res.send("Done Place");
-    res.render("map2.ejs", {latitude, longitude, address});
+
+    res.render("map.ejs", {latitude, longitude, address});
 });
+
+app.get('/pos', (req, res) => {
+    const position = getFinalPosition();
+    console.log("Current Latitude:", position.latitude);
+    console.log("Current Longitude:", position.longitude);
+    res.redirect('/map');
+});
+
+app.get('/currLoc', (req, res) => {
+    const { lat, lng } = req.query;
+    console.log(`Received current location: Latitude ${lat}, Longitude ${lng}`);
+
+    // Perform any additional processing here if needed
+    res.json({ status: 'success', message: `Location received: ${lat}, ${lng}` });
+});
+
 
 // Start server
 app.listen(3000, () => {
@@ -50,7 +69,7 @@ app.listen(3000, () => {
 
 // GeoCoding
 
-const apiKey = '4f77f8c9407145768351c42736f2d05a';          // Replace with your actual API key
+const apiKey = '602cacddbfa645eca86af8d28f011987';          // Replace with your actual API key
 
 
 // Forward Geocoding

@@ -11,25 +11,44 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1 style="margin-bottom: 1rem;">Map Location</h1>
+    <h1 style="margin-bottom: 1rem; text-decoration: underline;">Map Location</h1>
     <h3>Search location using coordinates</h3>
-    <form action="/map1" method="GET">
+    <form action="/map" method="GET">
         <label>Latitude: <input type="number" name="lat" step="0.0001" required></label>
         <label>and Longitude: <input type="number" name="lng" step="0.0001" required></label>
         <button type="submit">Search</button>
     </form>
     <hr>
 
+    <h3>Search location using Address</h3>
+    <form action="/map2" method="GET">
+        <label>Address: <input type="text" name="address"  required></label>
+        <button type="submit">Search</button>
+    </form>
+    <!-- <hr> -->
+    
     <div id="map"></div>
+    
+
+    <form id="current-position-form">
+        <button type="button" onclick="fetchCurrentPosition()">Send Location</button>
+    </form>
+
+
+
+
 
     <!-- Pass latitude and longitude to map.js -->
     <script>
         const latitude = <%= latitude %>;
         const longitude = <%= longitude %>;
+        const address = "<%= address %>";  // Ensure address is wrapped in quotes
     </script>
+    
 
     <!-- Leaflet and map functionality -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="js/map.js"></script>
+    
 </body>
 </html>
