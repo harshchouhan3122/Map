@@ -100,7 +100,7 @@ L.control.layers(baseLayers, overlays, {collapsed: true}).addTo(map);
 ///////////////////////////// GeoCoding ////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
-const apiKey = '602cacddbfa645eca86af8d28f011987';          // Replace with your actual API key
+const apiKey = '602cacddbfa645eca86af8d28f011987,ppppp';          // Replace with your actual API key
 
 
 // Forward Geocoding
