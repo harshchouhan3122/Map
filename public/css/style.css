@@ -58,3 +58,6 @@ iframe {
     height: 100%;
     border: 0;
 }
+
+#map { height: 70vh;
+    width: 90vw; }

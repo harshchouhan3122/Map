@@ -6,60 +6,29 @@
     <title>New Map</title>
 
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 
-    <!-- Styling -->
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-
-        #map { height: 70vh;
-                width: 90vw; }
-    </style>
-
 </head>
 <body>
-
-    
-    <h1 style="text-decoration: underline;">Map Location</h1> <br><br>
-
-    <h3>Search Location through Coordinates</h3>
+    <h1>Map Location</h1>
     <form action="/map" method="GET">
-        <label for="lat">Latitude: </label>
-        <input type="number" name="lat" step="0.0001" required> ,
-    
-        <label for="lng">Longitude: </label>
-        <input type="number" name="lng" step="0.0001" required>
-    
+        <label>Latitude: <input type="number" name="lat" step="0.0001" required></label>
+        <label>Longitude: <input type="number" name="lng" step="0.0001" required></label>
         <button type="submit">Search</button>
     </form>
     <hr>
-
-
-    <div class="coordinate"></div>
-
+    
     <div id="map"></div>
 
-
-    <!-- Pass latitude and longitude to map.js via the EJS template -->
+    <!-- Pass latitude and longitude to map.js -->
     <script>
-        const latitude = <%= latitude %>;  // Embed latitude from app.js
-        const longitude = <%= longitude %>;  // Embed longitude from app.js
+        const latitude = <%= latitude %>;
+        const longitude = <%= longitude %>;
     </script>
 
-    <!-- Make sure you put this AFTER Leaflet's CSS - Leaflet Script -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-
-    <!-- Include external JavaScript file for map functionality -->
+    <!-- Leaflet and map functionality -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="js/map.js"></script>
-
 </body>
 </html>
